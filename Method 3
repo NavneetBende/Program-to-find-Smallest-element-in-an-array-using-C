@@ -1,0 +1,32 @@
+// C Program to find smallest element in an array
+// using bottom up recursive approach
+#include <stdio.h>
+
+int minimum(int arr[], int i, int end)
+{
+    int min;
+    
+    // when we reach 2nd last array element
+    // return the smaller b/w last & 2nd last elements
+    if(i == end-1)
+        return (arr[i] < arr[i + 1]) ? arr[i] : arr[i + 1];
+
+    min = minimum(arr, i + 1, end);
+
+    return (arr[i] < min) ? arr[i] : min;
+}
+
+int main()
+{
+    int arr[] = {25, 10, 40, 30, 20, 80};
+    
+    // storing the index of end array element 
+    // end = 5 : arr[5] = 80 (the end element)
+    int end = sizeof(arr)/sizeof(arr[0]) - 1;    
+
+    int min = minimum(arr, 0, end);
+
+    printf("Smallest: %d\n", min);
+
+    return 0;
+}
